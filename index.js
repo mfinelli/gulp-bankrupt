@@ -15,7 +15,7 @@ var manifest = {};
 module.exports = function() {
   return through.obj(function(file, enc, cb) {
     if (file.isNull()) {
-      return cb(null, file);
+      return cb();
     }
 
     if (file.isBuffer()) {
@@ -35,7 +35,7 @@ module.exports = function() {
       file.pipe(hash);
     }
 
-    cb(null, file);
+    cb();
   }, function(cb) {
     this.push(new gutil.File({
       path: path.join(process.cwd(), DEFAULTS.fileName),
