@@ -19,8 +19,15 @@ module.exports = function() {
     }
 
     if (file.isBuffer()) {
-      manifest[file.path] = crypto.createHash(DEFAULTS.hashAlgorithm)
-        .update(file.contents).digest('hex');
+      manifest[file.path] = {
+        hash: crypto.createHash(DEFAULTS.hashAlgorithm)
+          .update(file.contents).digest('hex'),
+        sri: [
+          DEFAULTS.sriAlgorithm,
+          crypto.createHash(DEFAULTS.sriAlgorithm)
+            .update(file.contents).digest('base64')
+        ].join('-')
+      };
     }
 
     // We can't actually support streams right now since we need to do two
