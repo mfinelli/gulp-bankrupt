@@ -23,16 +23,14 @@ module.exports = function() {
         .update(file.contents).digest('hex');
     }
 
+    // We can't actually support streams right now since we need to do two
+    // simultaneous reads of the stream. This seems to be fine though since
+    // most gulp plugins don't support streams either. You can checkout
+    // commit 946b8300de5a6f5acc9614ab5c974b88857db338 to see an simple hash
+    // implementation.
     if (file.isStream()) {
-      var hash = crypto.createHash(DEFAULTS.hashAlgorithm);
-      hash.setEncoding('hex');
-
-      file.on('end', function() {
-        hash.end();
-        manifest[file.path] = hash.read();
-      });
-
-      file.pipe(hash);
+      return cb(new gutil.PluginError(PLUGIN_NAME,
+        'Streaming is not currently supported'));
     }
 
     cb();
