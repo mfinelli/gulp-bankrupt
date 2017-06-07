@@ -8,7 +8,7 @@ const PLUGIN_NAME = 'gulp-bankrupt',
     fileName: 'manifest.json',
     hashAlgorithm: 'md5',
     sriAlgorithm: 'sha384'
-  }
+  };
 
 var manifest = {};
 

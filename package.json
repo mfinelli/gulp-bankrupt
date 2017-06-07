@@ -4,6 +4,7 @@
   "description": "Asset manifest generator for gulp (hashes and subresource integrity)",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint index.js",
     "test": "tape test"
   },
   "repository": {
@@ -26,6 +27,7 @@
     "through2": "^2.0.3"
   },
   "devDependencies": {
+    "eslint": "^3.19.0",
     "tape": "^4.6.3"
   }
 }
