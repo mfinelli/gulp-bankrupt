@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "eslint": "^3.19.0",
+    "gulp": "^3.9.1",
     "tape": "^4.6.3"
   }
 }
